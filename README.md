@@ -10,6 +10,10 @@ computer could be a server running Linux (best option), a client windows machine
 admin’s own computer at home. 
 
 Bee4lan management system is based on Python 2.7.11 and its extension pywin32.
+Use
+	python-2.7.11.msi
+	pywin32-220.win32-py2.7.exe
+if you want have the original environment.
 All this stuff you can find at this installation CD. 
 
 Any comments are welcome!
