@@ -1,0 +1,107 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module core</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>core</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///R:/bee4lan/core.py">r:\bee4lan\core.py</a></font></td></tr></table>
+    <p><tt>Core&nbsp;program&nbsp;for&nbsp;bee4lan&nbsp;LAN&nbsp;managing&nbsp;program.&nbsp;<br>
+2016-03&nbsp;by&nbsp;Flintstone&nbsp;<br>
+...as&nbsp;a&nbsp;part&nbsp;of&nbsp;graduate&nbsp;axamination&nbsp;at&nbsp;www.vosplzen.cz<br>
+&nbsp;<br>
+Bee4lan&nbsp;works&nbsp;simply&nbsp;on&nbsp;basis&nbsp;of&nbsp;text&nbsp;files&nbsp;stored&nbsp;on&nbsp;server.&nbsp;This&nbsp;enables&nbsp;multiple&nbsp;ways&nbsp;of&nbsp;control:<br>
+&nbsp;&nbsp;1.&nbsp;directly&nbsp;editing&nbsp;.txt&nbsp;files<br>
+&nbsp;&nbsp;2.&nbsp;using&nbsp;bee4lan&nbsp;core&nbsp;program&nbsp;in&nbsp;commandline<br>
+&nbsp;&nbsp;3.&nbsp;via&nbsp;graphical&nbsp;environment&nbsp;intended&nbsp;to&nbsp;be&nbsp;created&nbsp;in&nbsp;the&nbsp;future<br>
+You&nbsp;can&nbsp;choose&nbsp;which&nbsp;one&nbsp;seems&nbsp;to&nbsp;be&nbsp;most&nbsp;handy&nbsp;for&nbsp;you.&nbsp;<br>
+Many&nbsp;thanks&nbsp;for&nbsp;comments!</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="argparse.html">argparse</a><br>
+</td><td width="25%" valign=top><a href="io.html">io</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-argsToTargets"><strong>argsToTargets</strong></a>(a_targets)</dt><dd><tt>Analyses&nbsp;args&nbsp;giving&nbsp;by&nbsp;-t&nbsp;option&nbsp;in&nbsp;commandline&nbsp;and&nbsp;decompose&nbsp;them&nbsp;into&nbsp;<br>
+particular&nbsp;hostnames&nbsp;on&nbsp;which&nbsp;the&nbsp;given&nbsp;script&nbsp;by&nbsp;-x&nbsp;option&nbsp;will&nbsp;be&nbsp;performed.<br>
+&nbsp;<br>
+As&nbsp;args&nbsp;you&nbsp;can&nbsp;use&nbsp;usergroup&nbsp;names,&nbsp;osgroup&nbsp;names&nbsp;and&nbsp;numbers&nbsp;of&nbsp;your&nbsp;hosts.<br>
+'all'&nbsp;...&nbsp;the&nbsp;script&nbsp;will&nbsp;be&nbsp;deployed&nbsp;to&nbsp;all&nbsp;of&nbsp;them.</tt></dd></dl>
+ <dl><dt><a name="-createNewLog"><strong>createNewLog</strong></a>(newtasknum, command)</dt><dd><tt>Makes&nbsp;new&nbsp;log&nbsp;file&nbsp;when&nbsp;new&nbsp;task&nbsp;is&nbsp;performed.&nbsp;<br>
+Bee4lan&nbsp;uses&nbsp;logfiles&nbsp;to&nbsp;know&nbsp;which&nbsp;number&nbsp;should&nbsp;have&nbsp;the&nbsp;next&nbsp;task.<br>
+To&nbsp;reset&nbsp;this&nbsp;line,&nbsp;just&nbsp;delete&nbsp;all&nbsp;files&nbsp;from&nbsp;logs_path&nbsp;<br>
+directory&nbsp;on&nbsp;server.<br>
+CONSIDER:&nbsp;All&nbsp;hosts&nbsp;has&nbsp;also&nbsp;their&nbsp;own&nbsp;logfiles.&nbsp;Hosts&nbsp;only&nbsp;execute&nbsp;tasks<br>
+with&nbsp;task&nbsp;numbers&nbsp;greater&nbsp;than&nbsp;what&nbsp;they&nbsp;can&nbsp;find&nbsp;in&nbsp;their&nbsp;local&nbsp;logs_path&nbsp;<br>
+directory.</tt></dd></dl>
+ <dl><dt><a name="-createTask"><strong>createTask</strong></a>(newtasknum)</dt><dd><tt>Takes&nbsp;all&nbsp;the&nbsp;hostnames&nbsp;from&nbsp;targets&nbsp;list,&nbsp;clears&nbsp;control.cfg&nbsp;file&nbsp;and&nbsp;<br>
+rewrites&nbsp;it&nbsp;using&nbsp;these&nbsp;hostnames.&nbsp;It&nbsp;includes&nbsp;also&nbsp;new&nbsp;task&nbsp;number,&nbsp;which&nbsp;<br>
+will&nbsp;be&nbsp;the&nbsp;same&nbsp;as&nbsp;in&nbsp;the&nbsp;todo.bat&nbsp;file.<br>
+&nbsp;<br>
+Since&nbsp;control.cfg&nbsp;is&nbsp;newly&nbsp;stored,&nbsp;all&nbsp;hosts&nbsp;added&nbsp;into&nbsp;bee4lan&nbsp;can&nbsp;make&nbsp;their&nbsp;<br>
+tries&nbsp;executing&nbsp;what&nbsp;is&nbsp;in&nbsp;todo.bat&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-createToDo"><strong>createToDo</strong></a>(tasknum, command)</dt><dd><tt>Takes&nbsp;given&nbsp;scriptname&nbsp;to&nbsp;deploy,&nbsp;created&nbsp;command&nbsp;from&nbsp;generateCommand&nbsp;function<br>
+and&nbsp;inserts&nbsp;it&nbsp;into&nbsp;newly&nbsp;created&nbsp;todo.bat&nbsp;file.<br>
+All&nbsp;next&nbsp;will&nbsp;be&nbsp;done&nbsp;due&nbsp;to&nbsp;bee4lan&nbsp;service&nbsp;installed&nbsp;on&nbsp;hosts.</tt></dd></dl>
+ <dl><dt><a name="-executeScript"><strong>executeScript</strong></a>(a_targets, a_execute)</dt><dd><tt>Main&nbsp;function&nbsp;controlling&nbsp;new&nbsp;task&nbsp;execution.<br>
+It&nbsp;prints&nbsp;all&nbsp;information&nbsp;to&nbsp;user&nbsp;and&nbsp;waits&nbsp;for&nbsp;confirmation&nbsp;before&nbsp;new&nbsp;task&nbsp;<br>
+is&nbsp;performed.<br>
+&nbsp;<br>
+Other&nbsp;function&nbsp;called&nbsp;from&nbsp;here:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-createToDo">createToDo</a>(newtasknum,&nbsp;command)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-createTask">createTask</a>(newtasknum)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-createNewLog">createNewLog</a>(newtasknum,&nbsp;command)</tt></dd></dl>
+ <dl><dt><a name="-generateCommand"><strong>generateCommand</strong></a>(a_execute)</dt><dd><tt>Prepares&nbsp;a&nbsp;command&nbsp;for&nbsp;<a href="#-executeScript">executeScript</a>()&nbsp;function&nbsp;depending&nbsp;on&nbsp;script's&nbsp;extension.</tt></dd></dl>
+ <dl><dt><a name="-isInt"><strong>isInt</strong></a>(num)</dt><dd><tt>Find&nbsp;out&nbsp;if&nbsp;the&nbsp;given&nbsp;string&nbsp;is&nbsp;convertible&nbsp;into&nbsp;int&nbsp;or&nbsp;not.</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>Main&nbsp;function&nbsp;of&nbsp;bee4lan&nbsp;core&nbsp;program.&nbsp;It&nbsp;is&nbsp;used&nbsp;for&nbsp;recognition&nbsp;if&nbsp;<br>
+the&nbsp;whole&nbsp;program&nbsp;or&nbsp;if&nbsp;you&nbsp;just&nbsp;want&nbsp;to&nbsp;use&nbsp;some&nbsp;parts&nbsp;of&nbsp;it.</tt></dd></dl>
+ <dl><dt><a name="-message_and_exit"><strong>message_and_exit</strong></a>(message)</dt><dd><tt>Additional&nbsp;function&nbsp;for&nbsp;processing&nbsp;inputs&nbsp;from&nbsp;commandline.</tt></dd></dl>
+ <dl><dt><a name="-printHosts_Raw"><strong>printHosts_Raw</strong></a>(hosts)</dt><dd><tt>List&nbsp;hosts&nbsp;with&nbsp;numbers,&nbsp;however,&nbsp;without&nbsp;any&nbsp;sorting.</tt></dd></dl>
+ <dl><dt><a name="-printScripts"><strong>printScripts</strong></a>(scripts)</dt><dd><tt>Prints&nbsp;available&nbsp;scripts&nbsp;sorted&nbsp;by&nbsp;their&nbsp;filetype.</tt></dd></dl>
+ <dl><dt><a name="-printUserGroups"><strong>printUserGroups</strong></a>(hosts, usergroups)</dt><dd><tt>Prints&nbsp;all&nbsp;groups&nbsp;which&nbsp;you&nbsp;declared&nbsp;using&nbsp;.txt&nbsp;files&nbsp;in&nbsp;the&nbsp;groups_path.<br>
+Please&nbsp;remember:&nbsp;every&nbsp;single&nbsp;hostname&nbsp;can&nbsp;belong&nbsp;only&nbsp;to&nbsp;one&nbsp;group.&nbsp;<br>
+(Maybe&nbsp;in&nbsp;the&nbsp;future&nbsp;this&nbsp;feature&nbsp;will&nbsp;be&nbsp;changed.)</tt></dd></dl>
+ <dl><dt><a name="-readHosts"><strong>readHosts</strong></a>(hosts_path, groups_path)</dt><dd><tt>Read&nbsp;all&nbsp;available&nbsp;hosts&nbsp;by&nbsp;means&nbsp;of&nbsp;their&nbsp;info&nbsp;files&nbsp;in&nbsp;hosts_path&nbsp;folder.&nbsp;<br>
+For&nbsp;working&nbsp;properly,&nbsp;please&nbsp;let&nbsp;make&nbsp;the&nbsp;hostinfo.py&nbsp;script&nbsp;as&nbsp;a&nbsp;first&nbsp;one&nbsp;<br>
+on&nbsp;a&nbsp;new&nbsp;host.&nbsp;This&nbsp;adds&nbsp;your&nbsp;machine&nbsp;into&nbsp;the&nbsp;bee4lan.</tt></dd></dl>
+ <dl><dt><a name="-readScripts"><strong>readScripts</strong></a>(scripts_path)</dt><dd><tt>Read&nbsp;all&nbsp;available&nbsp;scripts&nbsp;in&nbsp;your&nbsp;scripts_path.&nbsp;Please,&nbsp;maintain&nbsp;only&nbsp;<br>
+fully&nbsp;functional&nbsp;scripts&nbsp;in&nbsp;this&nbsp;folder.&nbsp;Making&nbsp;them&nbsp;is&nbsp;up&nbsp;to&nbsp;you.&nbsp;Please,&nbsp;remember:&nbsp;this&nbsp;<br>
+program&nbsp;will&nbsp;be&nbsp;just&nbsp;as&nbsp;handy&nbsp;as&nbsp;your&nbsp;scripts&nbsp;are.</tt></dd></dl>
+ <dl><dt><a name="-setDelay"><strong>setDelay</strong></a>(delay)</dt><dd><tt>Basic&nbsp;delay&nbsp;is&nbsp;implemented&nbsp;on&nbsp;the&nbsp;side&nbsp;of&nbsp;client&nbsp;-&nbsp;10s&nbsp;in&nbsp;main&nbsp;loop&nbsp;of&nbsp;<br>
+bee4lan&nbsp;service.&nbsp;However,&nbsp;it&nbsp;depends&nbsp;on&nbsp;when&nbsp;the&nbsp;host&nbsp;started&nbsp;his&nbsp;loop.<br>
+This&nbsp;feature&nbsp;is&nbsp;intended&nbsp;for&nbsp;next&nbsp;version&nbsp;of&nbsp;bee4lan.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>groups_path</strong> = r'R:\bee4lan\groups/'<br>
+<strong>history_path</strong> = r'R:\bee4lan\history/'<br>
+<strong>hosts</strong> = []<br>
+<strong>hosts_path</strong> = r'R:\bee4lan\hosts/'<br>
+<strong>logs_path</strong> = r'R:\bee4lan\logs/'<br>
+<strong>osgroups</strong> = {'win10': [], 'win7': [], 'winXP': []}<br>
+<strong>program_path</strong> = r'R:\bee4lan\'<br>
+<strong>scripts</strong> = {}<br>
+<strong>scripts_path</strong> = r'R:\bee4lan\'<br>
+<strong>targets</strong> = []<br>
+<strong>usergroups</strong> = {}</td></tr></table>
+</body></html>
